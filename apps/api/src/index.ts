@@ -13,6 +13,10 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+app.get('/farewell', (_req, res) => {
+  res.json({ message: 'Farewell!' });
+});
+
 app.listen(port, () => {
   console.log(`API server listening on port ${port}`);
 });
