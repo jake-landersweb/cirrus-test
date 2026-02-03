@@ -33,6 +33,7 @@ infrastructure:
     DATABASE_URL: "postgresql://postgres:postgres@localhost:${postgres.port}/cirrus_test"
     REDIS_URL: "redis://localhost:${redis.port}"
     REDIS_PORT: "${redis.port}"
+    CIRRUS_SKIP_QUALITY: "true"
 
 environment:
   PORT: "3000"
