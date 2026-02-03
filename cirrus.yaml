@@ -14,6 +14,19 @@ scripts:
   db:migrate: "pnpm --filter api db:migrate"
   db:seed: "pnpm --filter api db:seed"
 
+infrastructure:
+  compose_file: docker/compose.yml
+  health_check_services:
+    - postgres
+    - redis
+  health_check_timeout: 120
+  env:
+    DATABASE_HOST: "localhost"
+    DATABASE_PORT: "${postgres.port}"
+    DATABASE_URL: "postgresql://postgres:postgres@localhost:${postgres.port}/cirrus_test"
+    REDIS_URL: "redis://localhost:${redis.port}"
+    REDIS_PORT: "${redis.port}"
+
 environment:
   PORT: "3000"
   NODE_ENV: "development"
