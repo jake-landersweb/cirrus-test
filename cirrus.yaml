@@ -1,0 +1,30 @@
+# Cirrus configuration for cirrus-test project
+version: "1"
+
+project:
+  name: "cirrus-test"
+  description: "Test project for validating Cirrus workflows"
+
+scripts:
+  # Install dependencies
+  install: "pnpm install"
+
+  # Build the project
+  build: "pnpm build"
+
+  # Run development server
+  dev: "pnpm --filter api dev"
+
+  # Run linting (type checks)
+  lint: "pnpm check-types"
+
+# Environment variables for the project
+environment:
+  PORT: "3000"
+  NODE_ENV: "development"
+
+# Agent configuration
+agent:
+  model: "claude-sonnet-4-20250514"
+  max_retries: 3
+  timeout: 1800  # 30 minutes
