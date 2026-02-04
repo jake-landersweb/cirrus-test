@@ -1,18 +1,13 @@
 # Cirrus configuration for cirrus-test project
-version: "1"
-
-project:
-  name: "cirrus-test"
-  description: "Test project for validating Cirrus workflows"
+version: 1
+name: "cirrus-test"
+description: "Test project for validating Cirrus workflows"
 
 scripts:
   install: "pnpm install"
   build: "pnpm build"
   test: "pnpm test"
-  dev: "pnpm --filter api dev"
   lint: "pnpm check-types"
-  db:migrate: "pnpm --filter api db:migrate"
-  db:seed: "pnpm --filter api db:seed"
 
 apps:
   - name: api
@@ -35,10 +30,6 @@ infrastructure:
     REDIS_PORT: "${redis.port}"
     PORT: "${app.api.port}"
     CIRRUS_SKIP_QUALITY: "true"
-
-environment:
-  PORT: "3000"
-  NODE_ENV: "development"
 
 agent:
   model: "claude-sonnet-4-20250514"
