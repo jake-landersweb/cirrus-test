@@ -15,6 +15,17 @@ router.get('/', async (_req, res) => {
   }
 });
 
+// GET /api/users/count
+router.get('/count', async (_req, res) => {
+  try {
+    const count = await UserModel.getUserCount();
+    res.json({ count });
+  } catch (error) {
+    console.error('Error fetching user count:', error);
+    res.status(500).json({ error: 'Failed to fetch user count' });
+  }
+});
+
 // GET /api/users/:id
 router.get('/:id', async (req, res) => {
   try {

@@ -91,3 +91,10 @@ export async function deleteUser(id: string): Promise<boolean> {
   );
   return (result.rowCount ?? 0) > 0;
 }
+
+export async function getUserCount(): Promise<number> {
+  const result = await query<{ count: string }>(
+    `SELECT COUNT(*) as count FROM users WHERE is_active = true`
+  );
+  return parseInt(result.rows[0].count, 10);
+}
