@@ -22,14 +22,27 @@ infrastructure:
     - postgres
     - redis
   health_check_timeout: 120
-  env:
-    DATABASE_HOST: "localhost"
-    DATABASE_PORT: "${postgres.port}"
-    DATABASE_URL: "postgresql://postgres:postgres@localhost:${postgres.port}/cirrus_test"
-    REDIS_URL: "redis://localhost:${redis.port}"
-    REDIS_PORT: "${redis.port}"
-    PORT: "${app.api.port}"
-    CIRRUS_SKIP_QUALITY: "true"
+
+env:
+  - location: ".env.local"
+    values:
+      DATABASE_HOST: "localhost"
+      DATABASE_PORT: "${docker.postgres.port}"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:${docker.postgres.port}/cirrus_test"
+      REDIS_URL: "redis://localhost:${docker.redis.port}"
+      REDIS_PORT: "${docker.redis.port}"
+      PORT: "${app.api.port}"
+      CIRRUS_SKIP_QUALITY: "true"
+  - location: "apps/api/.env.local"
+    values:
+      PORT: "${app.api.port}"
+      NODE_ENV: "development"
+      DATABASE_HOST: "localhost"
+      DATABASE_PORT: "${docker.postgres.port}"
+      DATABASE_USER: "postgres"
+      DATABASE_PASSWORD: "postgres"
+      DATABASE_NAME: "cirrus_test"
+      REDIS_URL: "redis://localhost:${docker.redis.port}"
 
 agent:
   model: "claude-sonnet-4-20250514"
