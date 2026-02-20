@@ -104,7 +104,10 @@ export async function createPost(input: CreatePostInput): Promise<Post> {
       input.status === 'published' ? new Date() : null,
     ]
   );
-  return result.rows[0]!;
+  if (!result.rows[0]) {
+    throw new Error('Failed to create post');
+  }
+  return result.rows[0];
 }
 
 export async function updatePost(id: string, input: UpdatePostInput): Promise<Post | null> {

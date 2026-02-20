@@ -45,7 +45,10 @@ export async function createComment(input: CreateCommentInput): Promise<Comment>
      RETURNING *`,
     [input.post_id, input.author_id, input.parent_id ?? null, input.content]
   );
-  return result.rows[0]!;
+  if (!result.rows[0]) {
+    throw new Error('Failed to create comment');
+  }
+  return result.rows[0];
 }
 
 export async function updateComment(id: string, content: string): Promise<Comment | null> {
@@ -69,5 +72,9 @@ export async function getCommentCount(postId: string): Promise<number> {
     'SELECT COUNT(*) as count FROM comments WHERE post_id = $1',
     [postId]
   );
-  return parseInt(result.rows[0]!.count, 10);
+  const row = result.rows[0];
+  if (!row) {
+    return 0;
+  }
+  return parseInt(row.count, 10);
 }
