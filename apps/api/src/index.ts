@@ -22,6 +22,15 @@ app.get('/farewell', (_req, res) => {
   res.json({ message: 'Farewell!' });
 });
 
+// Echo endpoint
+app.post('/echo', (req, res) => {
+  res.json({
+    echo: req.body,
+    timestamp: new Date().toISOString(),
+    received: true
+  });
+});
+
 // API routes
 app.use('/api/users', usersRouter);
 app.use('/api/posts', postsRouter);
