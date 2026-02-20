@@ -32,6 +32,9 @@ export async function createTag(input: CreateTagInput): Promise<Tag> {
      RETURNING *`,
     [input.name, slug, input.description ?? null]
   );
+  if (!result.rows[0]) {
+    throw new Error('Failed to create tag');
+  }
   return result.rows[0];
 }
 
