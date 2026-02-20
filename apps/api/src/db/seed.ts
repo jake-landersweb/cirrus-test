@@ -78,7 +78,7 @@ async function seed() {
   const posts = [
     {
       id: uuidv7(),
-      author_id: users[0].id,
+      author_id: users[0]!.id,
       title: 'Getting Started with TypeScript',
       content: `TypeScript is a powerful typed superset of JavaScript that compiles to plain JavaScript.
 
@@ -109,7 +109,7 @@ TypeScript makes your code more maintainable and less error-prone.`,
     },
     {
       id: uuidv7(),
-      author_id: users[0].id,
+      author_id: users[0]!.id,
       title: 'Building REST APIs with Express',
       content: `Express.js is a minimal and flexible Node.js web application framework.
 
@@ -140,7 +140,7 @@ app.listen(3000);
     },
     {
       id: uuidv7(),
-      author_id: users[1].id,
+      author_id: users[1]!.id,
       title: 'PostgreSQL Performance Tips',
       content: `PostgreSQL is a powerful open-source relational database. Here are some tips to optimize performance.
 
@@ -170,7 +170,7 @@ Always use connection pooling in production to avoid connection overhead.`,
     },
     {
       id: uuidv7(),
-      author_id: users[2].id,
+      author_id: users[2]!.id,
       title: 'Testing Best Practices',
       content: `Good tests are essential for maintainable software.
 
@@ -205,7 +205,7 @@ Aim for meaningful coverage, not just high percentages.`,
     },
     {
       id: uuidv7(),
-      author_id: users[1].id,
+      author_id: users[1]!.id,
       title: 'Draft: CI/CD Pipeline Setup',
       content: `This is a work in progress article about setting up CI/CD pipelines.
 
@@ -251,7 +251,7 @@ Aim for meaningful coverage, not just high percentages.`,
   let commentCount = 0;
 
   for (const post of publishedPosts) {
-    const commenterId = users[Math.floor(Math.random() * users.length)].id;
+    const commenterId = users[Math.floor(Math.random() * users.length)]!.id;
     const commentId = uuidv7();
 
     await query(
