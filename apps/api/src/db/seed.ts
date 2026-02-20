@@ -263,7 +263,7 @@ Aim for meaningful coverage, not just high percentages.`,
 
     // Add a reply
     if (Math.random() > 0.5) {
-      const replyerId = users.filter(u => u.id !== commenterId)[0].id;
+      const replyerId = users.filter(u => u.id !== commenterId)[0]!.id;
       await query(
         `INSERT INTO comments (id, post_id, author_id, parent_id, content)
          VALUES ($1, $2, $3, $4, $5)`,

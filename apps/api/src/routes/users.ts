@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router, type Router as RouterType } from 'express';
 import * as UserModel from '../models/user.js';
 import { userCreateSchema, userUpdateSchema } from '@cirrus-test/shared';
 
-const router = Router();
+const router: RouterType = Router();
 
 // GET /api/users
 router.get('/', async (_req, res) => {

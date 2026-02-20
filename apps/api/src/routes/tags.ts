@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router, type Router as RouterType } from 'express';
 import * as TagModel from '../models/tag.js';
 import { tagCreateSchema } from '@cirrus-test/shared';
 
-const router = Router();
+const router: RouterType = Router();
 
 // GET /api/tags
 router.get('/', async (_req, res) => {
