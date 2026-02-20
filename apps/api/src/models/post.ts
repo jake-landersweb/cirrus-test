@@ -104,7 +104,7 @@ export async function createPost(input: CreatePostInput): Promise<Post> {
       input.status === 'published' ? new Date() : null,
     ]
   );
-  return result.rows[0];
+  return result.rows[0]!;
 }
 
 export async function updatePost(id: string, input: UpdatePostInput): Promise<Post | null> {

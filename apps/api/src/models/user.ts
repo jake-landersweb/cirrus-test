@@ -48,7 +48,7 @@ export async function createUser(input: CreateUserInput): Promise<User> {
      RETURNING id, email, username, display_name, bio, avatar_url, is_active, is_admin, created_at, updated_at`,
     [input.email, input.username, input.password_hash, input.display_name ?? null, input.bio ?? null]
   );
-  return result.rows[0];
+  return result.rows[0]!;
 }
 
 export async function updateUser(id: string, input: UpdateUserInput): Promise<User | null> {
@@ -100,7 +100,7 @@ export async function getUserCount(): Promise<{ active_count: number; inactive_c
      FROM users`
   );
   return {
-    active_count: parseInt(result.rows[0].active_count, 10),
-    inactive_count: parseInt(result.rows[0].inactive_count, 10)
+    active_count: parseInt(result.rows[0]!.active_count, 10),
+    inactive_count: parseInt(result.rows[0]!.inactive_count, 10)
   };
 }

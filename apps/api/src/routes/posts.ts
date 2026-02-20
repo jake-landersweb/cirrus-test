@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router, type Router as RouterType } from 'express';
 import * as PostModel from '../models/post.js';
 import * as CommentModel from '../models/comment.js';
 import * as TagModel from '../models/tag.js';
 import { postCreateSchema, postUpdateSchema, commentCreateSchema } from '@cirrus-test/shared';
 
-const router = Router();
+const router: RouterType = Router();
 
 // GET /api/posts
 router.get('/', async (req, res) => {

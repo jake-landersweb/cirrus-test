@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { type Express } from 'express';
 import { config } from './config.js';
 import usersRouter from './routes/users.js';
 import postsRouter from './routes/posts.js';
 import tagsRouter from './routes/tags.js';
 
-const app = express();
+const app: Express = express();
 
 app.use(express.json());
 

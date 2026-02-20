@@ -32,7 +32,7 @@ export async function createTag(input: CreateTagInput): Promise<Tag> {
      RETURNING *`,
     [input.name, slug, input.description ?? null]
   );
-  return result.rows[0];
+  return result.rows[0]!;
 }
 
 export async function deleteTag(id: string): Promise<boolean> {
